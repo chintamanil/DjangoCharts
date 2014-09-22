@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+
+{% load staticfiles %}
+
+{% block content %}
+     <div class="container">
+     <BR> <BR>
+     <link href="http://getbootstrap.com/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="http://getbootstrap.com/examples/signin/signin.css" rel="stylesheet">
+
+      <BR>
+    <p class="text">Hi {{ user.username }}</p>
+    <p class="text">Your email address is {{ user.email }}</p>
+
+
+</div>
+{% endblock  %}

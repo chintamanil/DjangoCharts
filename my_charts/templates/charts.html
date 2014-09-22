@@ -1,0 +1,66 @@
+
+
+{% extends 'base.html' %}
+{% load chartkick %}
+{% load staticfiles %}
+
+{% block content %}
+    <link rel="stylesheet" href="{% static 'css/stylesheet.css' %}" type="text.css">
+
+        <script src="http://www.google.com/jsapi"></script>
+
+        <!-- To use Highcharts uncomment the following 2 lines and delete the previous one
+        <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+        <script src="http://code.highcharts.com/highcharts.js"></script>
+        -->
+
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+    <script src="http://code.highcharts.com/highcharts.js"></script>
+    <script src="http://ankane.github.io/chartkick/chartkick.js"></script>
+
+
+    <body>
+    <br><br>
+<div class="wrap">
+    <div style="clear: both;">
+{#        <table width="100%">#}
+{#        <tr>#}
+{#        <td><div class="floatleft">{% pie_chart browser_stats with library={"title":"Browser Statistics, May 2013"} %}</div></td>#}
+{#        <td><div class="floatleft">{% pie_chart browser_stats with library={"title":"Browser Statistics, May 2013"} %}</div></td>#}
+{#      </tr>#}
+{#       </table>#}
+
+        <div id="black2">{% pie_chart browser_stats with library={"title":{"text":"Browser Statistics, May 2013"},"subtitle": {"text": 'My custom subtitle'}} %}</div>
+        <div id="black2">{% pie_chart browser_stats with library={"title":{"text":"Browser Statistics, May 2013"}} %}</div>
+        <div id="black2">{% pie_chart browser_stats with library={"title":{"text":"Browser Statistics, May 2013"}} %}</div>
+         <div id="floatleft">{% pie_chart browser_stats with library={"title":{"text":"Browser Statistics, May 2013"}} %}</div>
+         <div id="floatright">{% column_chart browser_stats with library={"title":{"text":"Browser Statistics, May 2013"}}%}</div>
+         <div id="floatright">{% line_chart temperature with id='temperature' library={"title":{"text":"Temperature Data"}} %}</div>
+         <div id="black2">{% bar_chart sizes with id='sizes' library={"title":{"text":"Size Data"}} %}</div>
+         <div id="black2">{% area_chart areas with id='areas' library={"title":{"text":"Area Data"}} %}</div>
+</div>
+    </div>
+{#        <a href="https://github.com/mher/chartkick.py"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://s3.amazonaws.com/github/ribbons/forkme_right_gray_6d6d6d.png" alt="Fork me on GitHub"></a>#}
+    </body>
+
+{% endblock content %}
+
+{#{% pie_chart browser_stats with library={"title":{"text":"Browser Statistics, May 2013"}} %} #}
+{#See Highcharts API http://www.highcharts.com/docs/chart-concepts/title-and-subtitle#}
+{##}
+{#For a fuller discussion see https://github.com/mher/chartkick.py/issues/13#}
+
+
+
+{#for horizontal spacer:#}
+{##}
+{#<span style="display:inline-block; width: YOURWIDTH;"></span>#}
+{#for vertical spacer:#}
+{##}
+{#<span style="display:block; height: YOURHEIGHT;"></span>#}
+{##}
+{#<p style="text-indent: 5em;">#}
+{#The first line of this paragraph will be indented about five characters, similar to a tabbed indent.#}
+{#</p>#}
+
+subtitle: {text: 'My custom subtitle'}

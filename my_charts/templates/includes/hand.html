@@ -1,0 +1,5 @@
+{% for card in cards %}
+    {% if card.image.url|length  >= 5 %}
+    <img width="100px" src="{{ card.image.url }}">
+    {% endif %}
+{% endfor %}

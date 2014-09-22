@@ -1,0 +1,60 @@
+{#{% load easy_maps_tags %}#}
+{% load staticfiles %}
+<!DOCTYPE html>
+<html>
+<head id="header">
+    	<link href="http://netdna.bootstrapcdn.com/twitter-bootstrap/2.3.0/css/bootstrap-combined.min.css" rel="stylesheet">
+        <link rel="stylesheet" href="{% static 'css/stylesheet.css' %}" type="text.css">
+        <script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
+        <script src="{% static 'js/bootstrap.js' %}"></script>
+<style>
+
+</style>
+
+</head>
+
+<body id="body">
+
+<div class="container">
+		<div class="navbar">
+			<div class="navbar-inner">
+				<div class="container">
+					<ul class="nav">
+                        <li><a href="{% url 'profile' %}">Home</a></li>
+						<li><a href="{% url 'add_movie' %}">Add Movie</a></li>
+						<li><a href="{% url 'movies' %}">Movie List</a></li>
+
+
+                        {% if user.is_authenticated %}
+                            <li class="logout"><a href="{% url 'logout' %}">Logout</a></li>
+
+                        {% else %}
+                            <li class="login"><a href="{% url 'login' %}">Login</a></li><li><a href="{% url 'register' %}">Register</a></li>
+                        {% endif %}
+					</ul>
+				</div>
+			</div>
+	    </div>
+</div>
+        <h1>Welcome to our Movie Mapper</h1>
+        {% block content %}{% endblock content %}
+
+<div class="navbar navbar-default navbar-fixed-bottom">
+
+<div class="container">
+
+<footer id="wrap">
+    <p class="text">Created by Mani Lonkar and Zach Sergeant.
+    Contact information: <a href="zac.sergeant@gmail.com">
+    someone@example.com</a></p>
+    </footer>
+
+</div>
+
+</div>
+
+
+</body>
+
+</html>
+

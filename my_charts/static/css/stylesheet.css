@@ -1,0 +1,139 @@
+.backflip {
+	border-radius: 1%;
+	width: 800px;
+	height: 500px;
+}
+
+.flip {
+	text-align: center;
+}
+
+.fire {
+	border-radius: 50%;
+	width: 225px;
+	height: 225px;
+}
+
+.campfire {
+	text-align: center;
+}
+
+.aboutme {
+	padding-left: 300px;
+	padding-right: 300px;
+}
+
+.pic {
+	text-align: center;
+	width: 600px;
+	border-radius: 1%;
+	height: 400px;
+}
+
+#myCarousel {
+	width: 600px;
+}
+
+.c-wrapper {
+	margin: auto;
+	width: 50%;
+}
+
+.carousel-inner {
+	border-radius: 1%;
+}
+
+.quotes {
+	text-align: center;
+}
+
+.prj {
+	height: 400px;
+
+}
+
+#projects {
+	text-align: center;
+
+}
+
+#grad {
+	padding-right: 15px;
+}
+
+#math {
+	padding-left: 15px;
+}
+
+.work {
+	text-align: center;
+	padding-bottom: 10px;
+}
+
+.txt{
+	
+}
+
+#body {
+    padding-left: 150px;
+    padding-right: 150px;
+}
+
+.logout {
+    padding-left: 775px;
+}
+
+.login {
+    padding-left: 702px;
+
+}
+
+.text {
+    font-size: 18px;
+}
+
+#text {
+    font-size: 16px;
+}
+
+#floatleft{
+     width:100%;
+    float:left;
+    padding:10px;
+}
+#floatright{
+     width:100%;
+    float:right;
+    padding:10px;
+}
+
+#black{
+    float:left;
+    background-color:black;
+    width:130%;
+    height:100%;
+    color:#0000ff;
+}
+#white{
+    float:right;
+    background-color:white;
+    width:100%
+    height:100%;
+    color:black;
+}
+
+#black2 {
+    float: left;
+    background-color: black;
+    width: 33%;
+    height: 100%;
+    color: #0000ff;
+}
+
+.wrapper-body {
+    float: left;
+    height: 100%;
+    align-content: center;
+    padding: 5px;
+    max-width: 100px;
+}

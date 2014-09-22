@@ -1,0 +1,17 @@
+<html><script>
+function peruse(){
+ D=document.getElementById("E")
+ SVGDoc=D.getSVGDocument()
+  SVGRoot=SVGDoc.documentElement
+ who=SVGRoot.firstChild.nextSibling
+ whoName="<"+who.nodeName
+  whoHow=who.attributes.item(0)
+  whoNow=whoHow.nodeName
+ whoWhat=whoHow.nodeValue+">"
+  alert(whoName+" "+whoNow+"="+whoWhat)
+}
+</script><body>
+<button onclick="peruse()">open</button><br>
+<embed name="E" id="E" src="simplest.svg" width="50"
+ height="50">
+</body></html>

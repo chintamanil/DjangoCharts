@@ -1,0 +1,25 @@
+% extends 'base.html' %}
+{% load chartkick %}
+{% load staticfiles %}
+
+{% block content %}
+    <link rel="stylesheet" href="{% static 'css/stylesheet.css' %}" type="text.css">
+
+        <script src="http://www.google.com/jsapi"></script>
+
+        <!-- To use Highcharts uncomment the following 2 lines and delete the previous one
+        <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+        <script src="http://code.highcharts.com/highcharts.js"></script>
+        -->
+
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+    <script src="http://code.highcharts.com/highcharts.js"></script>
+    <script src="http://ankane.github.io/chartkick/chartkick.js"></script>
+
+
+    <body>
+    <p> This is test page</p>
+
+    </body>
+
+{% endblock content %}
