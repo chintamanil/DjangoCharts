@@ -56,3 +56,7 @@ target/
 venv
 *.pyc
 staticfiles
+*.pyc,
+.idea 
+staticfiles
+local_settings.py
