@@ -1,4 +1,0 @@
-Django-Charts
-=============
-
-Django-Charts
