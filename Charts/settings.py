@@ -18,9 +18,21 @@ LOGIN_REDIRECT_URL = 'profile'
 
 import mimetypes
 import chartkick
+
+# BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+STATIC_ROOT = 'staticfiles'
+STATIC_URL = '/static/'
+
 STATICFILES_DIRS = (
-    chartkick.js(),
+    os.path.join(BASE_DIR, 'my_charts/static'),
 )
+
+########HEROKU #############
+# STATIC_URL = '/static/'
+# STATICFILES_DIRS = (
+#     chartkick.js(),
+# )
+
 
 # mimetypes.add_type("image/svg+xml", ".svg", True)
 # mimetypes.add_type("image/svg+xml", ".svgz", True)
@@ -120,18 +132,6 @@ SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
 ALLOWED_HOSTS = ['*']
 
 # Static asset configuration
-import os
-BASE_DIR = os.path.dirname(os.path.abspath(__file__))
-STATIC_ROOT = 'staticfiles'
-STATIC_URL = '/static/'
-
-STATICFILES_DIRS = (
-    os.path.join(BASE_DIR, 'static'),
-)
-
-
-########HEROKU #############
-STATIC_URL = '/static/'
 
 TEMPLATE_DIRS = (
     os.path.join(BASE_DIR, 'my_charts/templates'),

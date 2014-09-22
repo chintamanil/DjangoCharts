@@ -58,13 +58,13 @@ def profile(request):
 def dashboard(request):
     browser_stats = [['Chrome', 52.9], ['Firefox', 27.7], ['Opera', 1.6],
                      ['Internet Explorer', 12.6], ['Safari', 4]]
-    data = HealthParameters.objects.all().select_related('player__id')
-    print len(data), "this is length of data"
+    # data = HealthParameters.objects.all().select_related('player__id')
+    # print len(data), "this is length of data"
+    #
+    # for each in data:
+    #     print each.bp_systolic,'This is the users blood pressure'
 
-    for each in data:
-        print each.bp_systolic,'This is the users blood pressure'
-
-    return render(request, 'test.html', {})
+    return render(request, 'Dashboard.html', locals())
 
 def hsummary(request):
     browser_stats = [['Chrome', 52.9], ['Firefox', 27.7], ['Opera', 1.6],
