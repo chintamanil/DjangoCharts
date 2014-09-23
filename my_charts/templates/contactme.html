@@ -5,14 +5,19 @@
 
     <BR><BR>
 <p>This is the contacts page</p>
+    <link  href="{% static 'css/bootstrap.min.css' %}" href="http://getbootstrap.com/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="http://getbootstrap.com/examples/signin/signin.css" rel="stylesheet">
 
         <div id="contact_wrap">
 
         <div id="contact" class="clearfix">
             <div id="c_form">
                 <br /><br />
-                 {% csrf_token %}
-                <form name="theform" action="" method="post" id="theform">
+
+                <form name="theform" class="form-signin" action="" method="post" id="theform">
+                    {% csrf_token %}
                     <div id="name_email">
 
                         <label id="id_name">Name:</label>

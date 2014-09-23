@@ -9,6 +9,7 @@ from django.views.generic.edit import FormView
 from django.core.urlresolvers import reverse
 # from Charts import settings
 from forms import *
+from Charts import settings
 
 def home(request):
     return render(request, "home.html")
@@ -58,28 +59,116 @@ def profile(request):
 def dashboard(request):
     browser_stats = [['Chrome', 52.9], ['Firefox', 27.7], ['Opera', 1.6],
                      ['Internet Explorer', 12.6], ['Safari', 4]]
+
+    user = request.user
+    date = user.fitness_param.fitness_date
+    user_activity = [['Light Activity', user.fitness_param.min_light_activity], ['Minutes Sedentary Activity', user.fitness_param.min_sedentary_activity], ['Minutes Sleep Activity', user.fitness_param.min_sleep_activity],
+                     ['Minutes Very Awake', user.fitness_param.min_very_awake], ['Minutes Awake', user.fitness_param.min_awake]]
+
+    user_nutrition = [['Calories_In', user.nutrition_param.calories_in], ['Calories Burnt', user.nutrition_param.calories_burnt], ['Calories Planned IN', user.nutrition_param.calories_planned_in],
+                     ['Calories_planned_out', user.nutrition_param.calories_planned_out]]
+
+    user_health = [['BP Systolic Ideal', 120], ['BP Systolic Actual', user.health_param.bp_systolic], ['BP Dystolic Ideal', 80],
+             ['BP Diastolic Actual', user.health_param.bp_diastolic]]
     # data = HealthParameters.objects.all().select_related('player__id')
     # print len(data), "this is length of data"
-    #
     # for each in data:
-    #     print each.bp_systolic,'This is the users blood pressure'
+    #     for this in each.health_date:
+    #         print each.bp_systolic,'This is the users blood pressure'
 
     return render(request, 'Dashboard.html', locals())
 
 def hsummary(request):
-    browser_stats = [['Chrome', 52.9], ['Firefox', 27.7], ['Opera', 1.6],
-                     ['Internet Explorer', 12.6], ['Safari', 4]]
+
+    dict1 = {}
+    dict2 = {}
+    dict3 = {}
+    dict11 = {}
+    dict12 = {}
+    dict13 = {}
+    data = HealthParameters.objects.all()
+
+
+    count = cnt = 1
+    for each in data :
+        str_date = str(each.health_date)
+        if count == 1:
+            count +=1
+        elif count <= 8:
+            dict1[str_date] = each.bp_systolic
+            dict11[str_date] = each.bp_diastolic
+            # print each.health_day, count,'this'
+            count += 1
+        elif count <= 15 and count >=8 :
+            dict2[str_date] = each.bp_systolic
+            dict12[str_date] = each.bp_diastolic
+            count += 1
+            # print each.health_day, count,'this'
+        elif count <= 22 and count >15 :
+            dict3[str_date] = each.bp_systolic
+            dict13[str_date] = each.bp_diastolic
+            # print each.health_day, count,'this'
+            count += 1
+        else :
+            break
+
+    bp_systolic = [{u'data': dict1, u'name': u'week1'},{u'data': dict2, u'name': u'week2'},{u'data': dict3, u'name': u'week3'}]
+    bp_diastolic = [{u'data': dict11, u'name': u'week1'},{u'data': dict12, u'name': u'week2'},{u'data': dict13, u'name': u'week3'}]
+
+
+
     return render(request, 'Health_Summary.html', locals())
 
-def fsummary(request):
-    browser_stats = [['Chrome', 52.9], ['Firefox', 27.7], ['Opera', 1.6],
-                     ['Internet Explorer', 12.6], ['Safari', 4]]
-    return render(request, 'Fitness_Summary.html', locals())
-
 def nsummary(request):
-    browser_stats = [['Chrome', 52.9], ['Firefox', 27.7], ['Opera', 1.6],
-                     ['Internet Explorer', 12.6], ['Safari', 4]]
+    dict1 = {}
+    dict2 = {}
+    dict3 = {}
+    dict11 = {}
+    dict12 = {}
+    dict13 = {}
+    data = NutritionParameters.objects.all()
+    count = cnt = 0
+    for each in data :
+        str_date = str(each.nutrition_date)
+        if count == 0:
+            count +=1
+        else :
+            dict1[str_date] = each.calories_in
+            dict2[str_date] = each.calories_burnt
+            dict11[str_date] = each.calories_planned_in
+            dict12[str_date] = each.calories_planned_out
+            # print each.health_day, count,'this'
+            count += 1
+
+    calories_ib = [{u'data': dict1, u'name': u'calories_in'},{u'data': dict2, u'name': u'calories_burnt'}]
+    calories_pl = [{u'data': dict11, u'name': u'calories_in'},{u'data': dict12, u'name': u'calories_burnt'}]
+
+
     return render(request, 'Nutrition_Summary.html', locals())
+
+def fsummary(request):
+    dict1 = {}
+    dict2 = {}
+    dict3 = {}
+    dict11 = {}
+    dict12 = {}
+    dict13 = {}
+    data = FitnessParameters.objects.all()
+    count = cnt = 0
+    for each in data :
+        str_date = str(each.fitness_date)
+        dict1[str_date] = each.min_very_awake
+        dict2[str_date] = each.steps
+        dict11[str_date] = each.min_sedentary_activity
+        dict12[str_date] = each.min_light_activity
+            # print each.health_day, count,'this'
+        count += 1
+
+    calories_ib = [{u'data': dict1, u'name': u'very awake'},{u'data': dict2, u'name': u'steps'}]
+    calories_pl = [{u'data': dict11, u'name': u'sedentary'},{u'data': dict12, u'name': u'distance'}]
+
+
+    return render(request, 'Fitness_Summary.html', locals())
 
 def import_db(request):
     f = open('UserData.csv', 'r')
@@ -93,6 +182,7 @@ def import_db(request):
             #print line[16]
             user = request.user
             date_created = line[0]
+            day = line[17]
             health = HealthParameters.objects.create()
             fitness = FitnessParameters.objects.create()
             nutrition= NutritionParameters.objects.create()
@@ -101,6 +191,7 @@ def import_db(request):
             health.bp_diastolic = line[2]
             health.weight = line[3]
             health.height = line[4]
+            health.health_day = day
             health.save()
             user.health_param = health
             fitness.min_light_activity = line[5]
@@ -112,6 +203,7 @@ def import_db(request):
             fitness.steps = line[10]
             fitness.distance = line[11]
             fitness.activity_score = line[12]
+            fitness.fitness_day = day
             fitness.save()
             user.fitness_param = fitness
             nutrition.calories_in = line[13]
@@ -119,6 +211,7 @@ def import_db(request):
             nutrition.calories_planned_in = line[15]
             nutrition.calories_planned_out = line[16]
             nutrition.nutrition_date = date_created
+            nutrition.nutrition_day = day
             nutrition.save()
             user.nutrition_param = nutrition
             user.save()

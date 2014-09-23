@@ -6,7 +6,6 @@ from django.db import models
 from django.utils.translation import ugettext_lazy as _
 from django.core.exceptions import ValidationError
 from django.core.validators import MinValueValidator, MaxValueValidator
-
 from django import forms
 
 # Create your models here.
@@ -31,6 +30,7 @@ class HealthParameters(models.Model):
     weight = models.DecimalField(max_digits=5, decimal_places=2, null='True', help_text='Can Be Bank: Units lbs')
     height = models.DecimalField(max_digits=5, decimal_places=2, null='True', help_text='Can Be Bank: Units cms')
     health_date = models.DateField(null=True, help_text='Date Created')
+    health_day = models.CharField(max_length=10,null=True,help_text="Day")
 
     # def __unicode__(self):
     #      return u"Profile for user {0}".format(self.id)
@@ -48,6 +48,7 @@ class FitnessParameters(models.Model):
     distance = models.DecimalField(max_digits=5, decimal_places=2, null='True',
                                    help_text='Distance travelled : Units miles')
     activity_score = models.IntegerField(max_length=5, null=True, help_text='Calculated score')
+    fitness_day = models.CharField(max_length=10,null=True,help_text="Day")
     # def __unicode__(self):
     #     return u"Profile for user {0}".format(self.id)
 
@@ -58,6 +59,7 @@ class NutritionParameters(models.Model):
     calories_planned_in = models.IntegerField(max_length=5, null=True, help_text='Calories planned for intake')
     calories_planned_out = models.IntegerField(max_length=5, null=True, help_text='Calories planned for burning')
     nutrition_date = models.DateField(null=True, help_text='Date Created')
+    nutrition_day = models.CharField(max_length=10,null=True,help_text="Day")
     # def __unicode__(self):
     #     return u"Profile for user {0}".format(self.id)
 

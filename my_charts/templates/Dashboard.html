@@ -19,7 +19,7 @@
 
   <body>
     <link rel="stylesheet" href="{% static 'css/stylesheet.css' %}" type="text.css">
-    <link href="http://getbootstrap.com/examples/dashboard/dashboard.css" rel="stylesheet">
+    <link href="{% static 'css/dashboard.css' %}" rel="stylesheet">
     <link href="{% static 'css/bootstrap-theme.min.css' %}" rel="stylesheet" type="text.css">
     <link href="{% static 'css/theme.css' %}" rel="stylesheet" type="text.css">
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
@@ -31,7 +31,7 @@
         <div class="col-sm-3 col-md-2 sidebar">
           <ul class="nav nav-sidebar">
               <img src="{{ user.image  }}" alt="{{ user.name }}" height="42" width="42" align=middle">
-            <li class="active"><a href={% url "profile" %}>{{   user.name }} Profile</a></li>
+            <li class="active"><a href={% url "profile" %}>{{ user.name }} Profile</a></li>
               <BR>
             <li><a href={% url "hsummary" %}>Health Summary</a></li>
             <li><a href={% url "fsummary" %}>Fitness Summary</a></li>
@@ -40,8 +40,8 @@
 
           </ul>
           <ul class="nav nav-sidebar">
-            <li><a href="">Import Data</a></li>
-            <li><a href="">Export Data</a></li>
+            <li><a href={% url "import_db" %}>Import Data</a></li>
+            <li><a href={% url "import_db" %}">Export Data</a></li>
           </ul>
 
           <ul class="nav nav-sidebar">
@@ -61,27 +61,27 @@
           <h1 class="page-header">Dashboard</h1>
 
           <div class="row placeholders">
-            <div class="col-xs-6 col-sm-3 placeholder">
-                 <div id="black">{% pie_chart browser_stats with library={"title":"Browser Statistics, May 2013"} %}</div>
-              <h4>Label</h4>
-              <span class="text-muted">Something else</span>
+            <div class="col-xs-6 col-md-4 placeholder">
+                 <div id="black">{% pie_chart user_activity with library={"title":{"text":"Fitness Activity"},"subtitle": {"text": "For 8/1/2014"}} %}</div>
+              <h4>Fitness</h4>
+              <span class="text-muted">Get in Shape</span>
             </div>
-            <div class="col-xs-6 col-sm-3 placeholder">
+{#            <div class="col-xs-6 col-sm-3 placeholder">#}
 {#              <img data-src="holder.js/200x200/auto/vine" class="img-responsive" alt="200x200" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyMDAiIGhlaWdodD0iMjAwIj48cmVjdCB3aWR0aD0iMjAwIiBoZWlnaHQ9IjIwMCIgZmlsbD0iIzM5REJBQyIvPjx0ZXh0IHRleHQtYW5jaG9yPSJtaWRkbGUiIHg9IjEwMCIgeT0iMTAwIiBzdHlsZT0iZmlsbDojMUUyOTJDO2ZvbnQtd2VpZ2h0OmJvbGQ7Zm9udC1zaXplOjEzcHg7Zm9udC1mYW1pbHk6QXJpYWwsSGVsdmV0aWNhLHNhbnMtc2VyaWY7ZG9taW5hbnQtYmFzZWxpbmU6Y2VudHJhbCI+MjAweDIwMDwvdGV4dD48L3N2Zz4=">#}
-              <h4>Label</h4>
-              <span class="text-muted">Something else</span>
-            </div>
-            <div class="col-xs-6 col-sm-3 placeholder">
+{#              <h4>Label</h4>#}
+{#              <span class="text-muted">Something else</span>#}
+{#            </div>#}
+            <div class="col-xs-6 col-md-4 placeholder">
 {#              <img data-src="holder.js/200x200/auto/sky" class="img-responsive" alt="200x200" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyMDAiIGhlaWdodD0iMjAwIj48cmVjdCB3aWR0aD0iMjAwIiBoZWlnaHQ9IjIwMCIgZmlsbD0iIzBEOEZEQiIvPjx0ZXh0IHRleHQtYW5jaG9yPSJtaWRkbGUiIHg9IjEwMCIgeT0iMTAwIiBzdHlsZT0iZmlsbDojZmZmO2ZvbnQtd2VpZ2h0OmJvbGQ7Zm9udC1zaXplOjEzcHg7Zm9udC1mYW1pbHk6QXJpYWwsSGVsdmV0aWNhLHNhbnMtc2VyaWY7ZG9taW5hbnQtYmFzZWxpbmU6Y2VudHJhbCI+MjAweDIwMDwvdGV4dD48L3N2Zz4=">#}
-                <div id="black">{% pie_chart browser_stats with library={"title":"Browser Statistics, May 2013"} %}</div>
-              <h4>Label</h4>
-              <span class="text-muted">Something else</span>
+                <div id="black">{% bar_chart user_health with id='sizes' library={"title":{"text":"Health Activity"},"subtitle": {"text": "For 8/1/2014"}} %}</div>
+              <h4>Health</h4>
+              <span class="text-muted">Eat Better</span>
             </div>
-            <div class="col-xs-6 col-sm-3 placeholder">
+            <div class="col-xs-6 col-md-4 placeholder">
 {#              <img data-src="holder.js/200x200/auto/vine" class="img-responsive" alt="200x200" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyMDAiIGhlaWdodD0iMjAwIj48cmVjdCB3aWR0aD0iMjAwIiBoZWlnaHQ9IjIwMCIgZmlsbD0iIzM5REJBQyIvPjx0ZXh0IHRleHQtYW5jaG9yPSJtaWRkbGUiIHg9IjEwMCIgeT0iMTAwIiBzdHlsZT0iZmlsbDojMUUyOTJDO2ZvbnQtd2VpZ2h0OmJvbGQ7Zm9udC1zaXplOjEzcHg7Zm9udC1mYW1pbHk6QXJpYWwsSGVsdmV0aWNhLHNhbnMtc2VyaWY7ZG9taW5hbnQtYmFzZWxpbmU6Y2VudHJhbCI+MjAweDIwMDwvdGV4dD48L3N2Zz4=">#}
-                <div id="black">{% pie_chart browser_stats with library={"title":"Browser Statistics, May 2013"} %}</div>
-              <h4>Label</h4>
-              <span class="text-muted">Something else</span>
+                <div id="black">{% pie_chart user_nutrition with library={"title":{"text":"Nutrition Activity"},"subtitle": {"text": "For 8/1/2014"}}%}</div>
+              <h4>Nutrition</h4>
+              <span class="text-muted">Eat better</span>
             </div>
           </div>
 
