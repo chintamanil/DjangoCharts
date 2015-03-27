@@ -7,7 +7,6 @@ django-braces==1.4.0
 django-chartit==0.1
 django-chartjs==1.0
 django-debug-toolbar==1.2.1
--e git+https://github.com/novapost/django-highcharts.git@a24af3422c9c0d118b93ede2cc2e889bde8d97ce#egg=django_highcharts-master
 django-toolbelt==0.0.1
 gunicorn==19.1.1
 healthgraph-api==0.3.0
