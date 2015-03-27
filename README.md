@@ -1,4 +1,4 @@
-# Django
+# Djang Charts
 
 ## Description
 
